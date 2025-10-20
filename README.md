@@ -218,7 +218,6 @@ Valores comuns:
 - `"+0%"` — Velocidade normal
 - `"+200%"` — 2x mais rápido
 - `"+400%"` — 4x mais rápido (padrão)
-- `"+600%"` — 6x mais rápido
 
 ### Ordem de preferência das vozes
 
@@ -253,13 +252,6 @@ A primeira voz da lista tem prioridade, mas todas serão usadas aleatoriamente.
 - No Windows, use `r` antes das aspas: `r"C:\..."`
 - Verifique se o caminho termina em `collection.media`
 
-### Performance lenta
-
-**Solução:**
-
-- Aumente a concorrência: `--concurrency 150`
-- Feche programas que consomem banda
-
 ### Cartões sem áudio continuam sem áudio
 
 **Solução:**
@@ -289,4 +281,5 @@ Dependências:
 ---
 
 **Versão:** 1.0.0  
-**Atualização:** Janeiro 2025
+**Atualização:** Outubro 2025
+
