@@ -108,7 +108,7 @@ pip install edge-tts aiohttp rich
 
 Clone o repositório ou baixe os arquivos `main_script.py` e `converters.py`:
 ```bash
-git clone https://github.com/seu-usuario/anki-tts-edge.git
+git clone https://github.com/lucasgabriel-fiap/anki-tts-edge.git
 cd anki-tts-edge
 ```
 
@@ -198,8 +198,6 @@ python main_script.py --limit 10
 python main_script.py --reset
 ```
 
-Remove áudios existentes e gera novamente.
-
 **Ajustar concorrência:**
 ```bash
 python main_script.py --concurrency 50  # Mais conservador
@@ -237,92 +235,38 @@ EDGE_TTS_VOICES: List[str] = field(default_factory=lambda: [
 
 A primeira voz da lista tem prioridade, mas todas serão usadas aleatoriamente.
 
-### Timeouts e retries
-```python
-EDGE_TTS_TIMEOUT_S: int = 60      # Timeout por requisição
-EDGE_TTS_MAX_RETRIES: int = 3     # Tentativas antes de falhar
-CONCURRENCY: int = 100             # Requisições paralelas
-```
-
 ## Resolução de problemas
 
 ### Erro de conexão com Anki
 
-**Causa:** AnkiConnect não está instalado ou Anki está fechado.
-
 **Solução:**
 
-1. Verifique se o Anki está aberto
-2. Confirme que AnkiConnect (código 2055492159) está instalado
-3. Reinicie o Anki
-
-### Falhas na geração de áudio
-
-**Causa:** Instabilidade de rede ou sobrecarga.
-
-**Solução:**
-
-1. Execute o programa novamente (processa apenas o que faltou)
-2. Reduza a concorrência: `--concurrency 50`
-3. Verifique sua conexão com internet
+- Verifique se o Anki está aberto
+- Confirme que AnkiConnect (código 2055492159) está instalado
+- Reinicie o Anki
 
 ### Diretório de mídia não encontrado
 
-**Causa:** Caminho incorreto em `MEDIA_DIR`.
-
 **Solução:**
 
-1. Confirme o caminho seguindo as instruções da seção Configuração
-2. No Windows, use `r` antes das aspas: `r"C:\..."`
-3. Verifique se o caminho termina em `collection.media`
+- Confirme o caminho seguindo as instruções da seção Configuração
+- No Windows, use `r` antes das aspas: `r"C:\..."`
+- Verifique se o caminho termina em `collection.media`
 
 ### Performance lenta
 
-**Causa:** Concorrência baixa ou limitações de rede.
-
 **Solução:**
 
-1. Aumente a concorrência: `--concurrency 150`
-2. Feche programas que consomem banda
-3. Execute em horários de menor congestionamento
+- Aumente a concorrência: `--concurrency 150`
+- Feche programas que consomem banda
 
 ### Cartões sem áudio continuam sem áudio
 
-**Causa:** O campo pode estar vazio ou ter menos caracteres que o mínimo.
-
 **Solução:**
 
-1. Verifique se os campos especificados em `FIELDS_TO_PROCESS` existem nos seus cartões
-2. Confira se há texto nos campos (mínimo padrão: 1 caractere)
-3. Use `--reset` para forçar regeneração
-
-## Arquitetura técnica
-
-### Fluxo de processamento
-
-1. **Busca de notas:** AnkiConnect retorna IDs e campos via API REST
-2. **Extração de texto:** HTML é stripped, LaTeX/MathML convertido para texto
-3. **Deduplicação:** Textos idênticos geram apenas um áudio
-4. **Geração paralela:** edge-tts processa múltiplos textos simultaneamente
-5. **Verificação:** Arquivos são validados (tamanho mínimo 1KB)
-6. **Atualização:** Tags `[sound:...]` são inseridas via AnkiConnect
-
-### Conversão LaTeX
-
-O módulo `converters.py` implementa:
-
-- Parser manual de comandos LaTeX (não usa bibliotecas externas)
-- Mapeamento de ~200 comandos matemáticos para português
-- Tratamento de frações, raízes, limites, integrais, somatórios
-- Conversão de MathML via ElementTree
-- Cache LRU para performance
-
-### Robustez
-
-- Sistema de retry com backoff exponencial
-- Rotação automática entre vozes em caso de falha
-- Validação de integridade dos arquivos gerados
-- Logs detalhados em `tts_errors.log`
+- Verifique se os campos especificados em `FIELDS_TO_PROCESS` existem nos seus cartões
+- Confira se há texto nos campos
+- Use `--reset` para forçar regeneração
 
 ## Limitações conhecidas
 
@@ -330,6 +274,7 @@ O módulo `converters.py` implementa:
 - **Conexão:** Requer internet (Edge TTS é serviço online)
 - **Precisão matemática:** Notações muito complexas podem ter conversão imperfeita
 
+## Licença
 
 MIT License - Uso livre para fins pessoais e comerciais.
 
@@ -344,4 +289,4 @@ Dependências:
 ---
 
 **Versão:** 1.0.0  
-**Atualização:** Outubro 2025
+**Atualização:** Janeiro 2025
