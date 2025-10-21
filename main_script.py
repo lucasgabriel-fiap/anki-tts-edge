@@ -43,6 +43,8 @@ class Config:
         "Frente": "question",
         "Verso": "answer",
     })
+
+    FIELDS_TO_PROCESS: List[str] = field(default_factory=lambda: ["Frente", "Verso"])
     
     # Edge TTS - Balanceado para confiabilidade
     EDGE_TTS_RATE: str = "+400%"
@@ -555,4 +557,5 @@ if __name__ == "__main__":
         console.print("\n[yellow]Processo interrompido pelo usuário[/yellow]")
     except Exception as e:
         console.print(f"\n[red]Erro fatal: {e}[/red]")
+
         logging.exception("Erro fatal")
