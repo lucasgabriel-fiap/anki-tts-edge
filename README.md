@@ -10,6 +10,10 @@ Gerador de áudio automático para cartões do Anki em português brasileiro. Pr
 - Não requer extensões além do AnkiConnect
 - **Conversão inteligente de LaTeX** e símbolos matemáticos
 
+## 🎥 Demonstração
+
+[![Assista no YouTube](https://img.shields.io/badge/▶️_Assista_no_YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://www.youtube.com/watch?v=9ZlPqs0QZPs)
+
 ## Resumo
 
 Este programa conecta no Anki via AnkiConnect, extrai o texto dos seus cartões, gera arquivos de áudio usando Edge TTS da Microsoft e adiciona as tags de som automaticamente.
@@ -301,5 +305,6 @@ Dependências:
 
 **Versão:** 1.0.0  
 **Atualização:** Outubro 2025
+
 
 
