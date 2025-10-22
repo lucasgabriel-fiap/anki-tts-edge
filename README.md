@@ -133,13 +133,32 @@ DECK_QUERY: str = 'deck:"Português::Vocabulário"'
 MEDIA_DIR: str = r"C:\Users\SeuUsuario\AppData\Roaming\Anki2\Usuario 1\collection.media"
 ```
 
-Como encontrar o caminho correto:
+### Como encontrar o caminho correto:
 
-1. Abra o Anki
-2. Ferramentas → Preferências → Mostrar Pasta
-3. Entre na pasta do seu perfil (geralmente "Usuario 1" ou "User 1")
-4. Navegue até `collection.media`
-5. Copie o caminho completo
+### Passo a passo:
+
+1. **Aperte `Windows + R`** no seu teclado
+   - Ou pesquise por "Executar" no menu Iniciar
+
+2. **Cole este comando na janela que abrir:**
+   ```
+   %APPDATA%\Anki2
+   ```
+
+3. **Aperte ENTER**
+
+4. **Uma pasta será aberta** mostrando seus perfis do Anki
+   - Você verá pastas como: "User 1", "Usuario 1", ou outro nome
+   - Se houver mais de uma, escolha a que você usa
+
+5. **Entre na pasta do seu perfil**
+   - Dê duplo clique nela
+
+6. **Dentro da pasta, procure por:** `collection.media`
+   - Esta é a pasta que você precisa!
+
+7. **Copie o caminho completo:**
+   - Clique na barra de endereço do Explorer (onde mostra o caminho)
 
 Exemplos por sistema operacional:
 ```python
@@ -282,4 +301,5 @@ Dependências:
 
 **Versão:** 1.0.0  
 **Atualização:** Outubro 2025
+
 
